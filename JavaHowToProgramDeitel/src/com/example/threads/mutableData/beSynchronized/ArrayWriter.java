@@ -1,4 +1,4 @@
-package com.example.threads.mutableData;
+package com.example.threads.mutableData.beSynchronized;
 
 public class ArrayWriter implements Runnable {
 

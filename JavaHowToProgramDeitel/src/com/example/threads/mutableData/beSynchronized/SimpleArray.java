@@ -1,10 +1,9 @@
-package com.example.threads.mutableData;
+package com.example.threads.mutableData.beSynchronized;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
 
-public class SimpleArray {  // ATENÇÃO: NÃO SEGURO PARA THREADS!
-
+public class SimpleArray {
 
   private static final SecureRandom generator  =   new SecureRandom();
   private final int[] array; //array de inteiros compartilhado
@@ -15,9 +14,9 @@ public class SimpleArray {  // ATENÇÃO: NÃO SEGURO PARA THREADS!
     array = new int[size];
   }
 
-  public void add(int value){
+  public synchronized void add(int value){
 
-    int position = writeIndex;
+    int position = writeIndex;//deveria ser atômica.
 
     try {
       //coloca a thread para dormir durante 0 a 499 milissegundos.
@@ -28,10 +27,10 @@ public class SimpleArray {  // ATENÇÃO: NÃO SEGURO PARA THREADS!
       Thread.currentThread().interrupt();
     }
     //coloca o o valor no elemento apropriado
-    array[position] =  value;
+    array[position] =  value; //deveria ser atômica.
     System.out.printf("%s wrote %2d to element %d.%n", Thread.currentThread().getName(), value, position);
 
-    ++writeIndex;
+    ++writeIndex; //deveria ser atômica.
     System.out.printf("Next write index: %d%n", writeIndex);
   }
 
