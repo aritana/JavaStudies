@@ -7,9 +7,84 @@ public class Arrays {
   public static void main(String[] args) {
 
     // begin();
-    analyzeSurveyResults();
-    analyzeSurveyResults2();
+    //  analyzeSurveyResults();
+    // analyzeSurveyResults2();
+    passingArraysToMethods();
 
+
+  }
+
+  private static void passingArraysToMethods() {
+
+    /**
+     * Unlike some other languages, Java does not allow you to choose pass-by-value
+     * or pass-by-reference - all arguments are passed by value.
+     * A method call can pass two types of values to a method:
+     * copies of primitives values and copies of reference to objects.
+     *
+     */
+
+    String[] names = {"Camila","Joao"};
+    Double[] hourlyTemperatures = new Double[24];
+    Double doubleValue = 10.0;
+
+
+
+    modifyElement(hourlyTemperatures);// copy of the reference
+
+    System.out.println("Temperature");
+    System.out.printf("%s%8s%n", "Index", "Value");
+    System.out.printf("%5d %8f%n", 0, hourlyTemperatures[0]);
+
+    //primitive
+
+    int[] numberOfDays = new int[2];
+    modifyPrimitiveArray(numberOfDays); //copy of the reference
+
+    System.out.println("Days");
+    System.out.printf("%s%8s%n", "Index", "Value");
+    System.out.printf("%5d %8d%n", 0, numberOfDays[0]);
+
+    // copy of the reference
+    modifyElement(hourlyTemperatures[0]);// copy of the reference
+    System.out.println("Temperature2");
+    System.out.printf("%s%8s%n", "Index", "Value");
+    System.out.printf("%5d %8f%n", 0, hourlyTemperatures[0]);
+
+    modifyElementName(names[0]);// copy of the reference
+    System.out.println("Name");
+    System.out.printf("%s%8s%n", "Index", "Value");
+    System.out.printf("%5d %8s%n", 0, names[0]);
+
+    modifyDoubleValue(doubleValue);// copy of the reference
+    System.out.println("SchoolName");
+    System.out.printf("%s%8s%n", "Index", "Value");
+    System.out.printf("%5d %8s%n", 0, doubleValue);
+
+
+  }
+
+  private static void modifyDoubleValue(Double doubleValue) {
+    doubleValue = 1.2;
+  }
+
+  private static void modifyElementName(String name) {
+    name= "Aritana";
+  }
+
+  private static void modifyPrimitiveArray(int[] numberOfDays) {
+    numberOfDays[0]=15;
+  }
+
+  private static void modifyElement(Double[] hourlyTemperatures) {
+    //refers to the same array decalared in the caller method
+    hourlyTemperatures[0] = 5.5;
+
+  }
+
+
+  private static void modifyElement(Double hourlyTemperature) {
+    hourlyTemperature = 9.0;
 
   }
 
@@ -21,8 +96,6 @@ public class Arrays {
 
     int[] responses = {1, 2, 5, 4, 3, 5, 2, 1, 3, 3, 1, 4, 3, 3, 3, 2, 3, 3, 2, 14};
     int[] frequency = new int[5];
-
-
 
     int rate = Integer.BYTES;
     for (int counter = 0; counter < responses.length; counter++) {
