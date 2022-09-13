@@ -9,9 +9,72 @@ public class Arrays {
     // begin();
     //  analyzeSurveyResults();
     // analyzeSurveyResults2();
-    passingArraysToMethods();
+    //passingArraysToMethods();
+    multidimensionalArrays();
 
 
+  }
+
+  private static void multidimensionalArrays() {
+
+    //The initial values are grouped by row in braces.
+    int[][] b = {{1, 2}, {3, 4}};
+    System.out.println("multidimensional b");
+    System.out.printf("%s%8s%n", "Index", "Value");
+    System.out.printf("%5d,%d %8d%n", 0, 0, b[0][0]);
+    System.out.printf("%5d,%d %8d%n", 0, 1, b[0][1]);
+    System.out.printf("%5d,%d %8d%n", 1, 0, b[1][0]);
+    System.out.printf("%5d,%d %8d%n", 1, 1, b[1][1]);
+
+    //the lengths of the rows in array b are not required to be the same
+    int[][] c = {{1, 2}, {3, 4, 5}};
+
+    System.out.println("multidimensional c");
+    System.out.printf("%s%8s%n", "Index", "Value");
+    System.out.printf("%5d,%d %8d%n", 0, 0, c[0][0]);
+    System.out.printf("%5d,%d %8d%n", 0, 1, c[0][1]);
+    System.out.printf("%5d,%d %8d%n", 1, 0, c[1][0]);
+    System.out.printf("%5d,%d %8d%n", 1, 1, c[1][1]);
+    System.out.printf("%5d,%d %8d%n", 1, 1, c[1][2]);
+
+    int[][] d = new int[3][4];
+    // the number of columns is not required
+    // Programns can also use variables to specify array dimensions, because new creates arrays ate
+    //execution time - not at compile time.
+    int[][] e = new int[2][];
+    e[0] = new int[5];
+    e[1] = new int[3];
+
+    int[][] array1 = {{1, 2, 3}, {4, 5, 6}};
+    int[][] array2 = {{1, 2}, {3}, {4, 5, 6}};
+
+    System.out.println("Values in array1 by row are:");
+    outputArray(array1);
+
+    System.out.println("Values in array2 by row are:");
+    outputArray(array2);
+
+    int[][] array3 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+
+    System.out.println("Values in array3 by row are:");
+    outputArray(array3);
+
+    for (int column = 0; column < array3[2].length; column++) {
+      array3[2][column] = 0;
+    }
+    System.out.println("Values in array3 by row are:");
+    outputArray(array3);
+
+  }
+
+  private static void outputArray(int[][] array) {
+
+    for (int row = 0; row < array.length; row++) {
+      for (int column = 0; column < array[row].length; column++) {
+        System.out.printf("%d ", array[row][column]);
+      }
+      System.out.println();
+    }
   }
 
   private static void passingArraysToMethods() {
@@ -24,11 +87,9 @@ public class Arrays {
      *
      */
 
-    String[] names = {"Camila","Joao"};
+    String[] names = {"Camila", "Joao"};
     Double[] hourlyTemperatures = new Double[24];
     Double doubleValue = 10.0;
-
-
 
     modifyElement(hourlyTemperatures);// copy of the reference
 
@@ -69,11 +130,11 @@ public class Arrays {
   }
 
   private static void modifyElementName(String name) {
-    name= "Aritana";
+    name = "Aritana";
   }
 
   private static void modifyPrimitiveArray(int[] numberOfDays) {
-    numberOfDays[0]=15;
+    numberOfDays[0] = 15;
   }
 
   private static void modifyElement(Double[] hourlyTemperatures) {
