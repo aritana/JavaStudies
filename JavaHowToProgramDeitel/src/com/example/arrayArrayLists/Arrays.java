@@ -10,9 +10,66 @@ public class Arrays {
     //  analyzeSurveyResults();
     // analyzeSurveyResults2();
     //passingArraysToMethods();
-    multidimensionalArrays();
+    // multidimensionalArrays();
+    //variableLengthArgumentLists();
+    //comandLineArguments(args);
+    classArrays();
+  }
 
+  private static void classArrays() {
 
+  }
+
+  private static void comandLineArguments(String[] args) {
+    if (args.length != 3) {
+      System.out.printf("Error: Please re-enter the entire command, including%n"
+          + "an array size, initial value and increment.%n");
+    } else {
+      //get array size from first command-line argument
+      int arrayLength = args.length;
+      int[] array = new int[arrayLength];
+
+      for (int i = 0; i < array.length; i++) {
+        array[i] = Integer.parseInt(args[i]) + 1;
+      }
+
+      for (int item : array
+      ) {
+        System.out.println(item);
+      }
+
+    }
+  }
+
+  /**
+   * a type followed by an ellipsis(...) in a method's parameter list indicates that the method
+   * receives a variable number of arguments of a particular type. This use of the ellipsis can
+   * occur only once in a parameter list, ant the ellipsis, together with its type and the parameter
+   * name, must be placed at the end of the parameter list.
+   */
+  private static void variableLengthArgumentLists(double... numbers) {
+    double d1 = 10.0;
+    double d2 = 20.0;
+    double d3 = 30.0;
+    double d4 = 40.0;
+
+    System.out.printf("%n d1 = %.1f%n d2 = %.1f%n d3  = %.1f%n d4 = %.1f%n%n", d1, d2, d3, d4);
+    System.out.printf("Average of d1 and d2 is %.1f%n", average(d1, d2));
+
+    System.out.printf("Average of d1, d2 and d3 is %.1f%n", average(d1, d2, d3));
+
+    System.out.printf("Average of d1, d2, d3 and d4 is %.1f%n", average(d1, d2, d3, d4));
+
+  }
+
+  private static double average(double... numbers) {
+    double total = 0.0;
+
+    for (double d : numbers) {
+      total += d;
+    }
+
+    return total / numbers.length;
   }
 
   private static void multidimensionalArrays() {
