@@ -1,8 +1,8 @@
 package com.example.arrayArrayLists;
 
 import java.util.Random;
-
-public class Arrays {
+import java.util.Arrays;
+public class TheArrays {
 
   public static void main(String[] args) {
 
@@ -16,8 +16,72 @@ public class Arrays {
     classArrays();
   }
 
+  /**
+   *  Class Arrays provides static methods for common array manipulatins: sort, binarySearch,
+   *  equals and fill, e much more.
+   */
   private static void classArrays() {
 
+    double[] doubleArray = {8.4,9.3, 0.2, 7.9, 3.4};
+    Arrays.sort(doubleArray);
+
+    System.out.printf("%ndoubleArray: ");
+
+    for (double value : doubleArray) {
+      System.out.printf("%.1f ", value);
+    }
+    
+    //fill 10-element array with 7s
+    int[] filledIntArray = new int[10];
+    Arrays.fill(filledIntArray,7);
+    displayArray(filledIntArray,"filledIntArray");
+
+    //copy array intArray into array intArrayCopy
+
+    int[] intArray = {1,2,3,4,5,6};
+    int[] intArrayCopy = new int[intArray.length];
+
+    System.arraycopy(intArray,0,intArrayCopy,0,intArray.length);
+    displayArray(intArray, "intArray");
+    displayArray(intArrayCopy,"intArrayCopy");
+
+    //Compare intArray and intArrayCopy for equality
+    boolean b = Arrays.equals(intArray,intArrayCopy);
+    System.out.printf("%n%nintArray %s intArrayCopy%n", (b? "==" : "!="));
+
+    //Compare intArray and filledIntArray for equality
+     b = Arrays.equals(intArray,filledIntArray);
+    System.out.printf("%n%nintArray %s filledIntArray%n", (b? "==" : "!="));
+
+    /**
+     * When Comparing array contents always use Arrays.equals(), which compares the
+     * tow array's contents, rather than array1.equals(array2), which compares wheter
+     * array1 and array2 refer to the same array object
+     */
+    //Compare intArray and filledIntArray for reference
+    b = intArrayCopy.equals(intArray);
+    System.out.printf("%n%n Reference: intArray %s filledIntArray%n%n", (b? "==" : "!="));
+
+    //search intArray for the value 5
+    int location = Arrays.binarySearch(intArray,5);
+
+    if(location >= 0){
+      System.out.printf("Found 5 at element %d in intArray%n", location);
+    }else{
+      System.out.println("5 not found in intArray");
+    }
+
+
+  }
+
+  private static void displayArray(int[] filledIntArray, String description) {
+
+    System.out.printf("%n%s: ",description);
+    for (int item:filledIntArray
+    ) {
+      System.out.printf("%d",item);
+
+    }
   }
 
   private static void comandLineArguments(String[] args) {
