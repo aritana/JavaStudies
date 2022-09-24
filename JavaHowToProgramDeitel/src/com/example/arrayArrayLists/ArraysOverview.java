@@ -1,8 +1,10 @@
 package com.example.arrayArrayLists;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Arrays;
-public class TheArrays {
+
+public class ArraysOverview {
 
   public static void main(String[] args) {
 
@@ -13,16 +15,65 @@ public class TheArrays {
     // multidimensionalArrays();
     //variableLengthArgumentLists();
     //comandLineArguments(args);
-    classArrays();
+    //classArrays();
+    collections();
+  }
+
+  private static void collections() {
+    /**
+     * Arrays do not automatically change their size at execution time to accommodate additional elements.
+     */
+
+    ArrayList<String> items = new ArrayList<>();
+
+    items.add("red");
+    items.add(0, "yellow");
+
+    System.out.println("Display list contents with counter-controlled loop:");
+    for (int i = 0; i < items.size(); i++) {
+      System.out.printf(" %s", items.get(i));
+    }
+    System.out.println();
+    items.add("green");
+    items.add("yellow");
+    display(items,"List with two new elements:");
+
+    items.remove("yellow"); //remove the first "yellow"
+    display(items,"Remove first instance of yellow:");
+
+    items.remove(1); //remove the first "yellow"
+    display(items,"Remove second list element:");
+
+    //check if a value is in the list
+    System.out.printf("%n\"red\" is %s in the list%n",items.contains("red")?"":"not ");
+
+    /**
+     * The contais method compares its argument to each element of the ArrayList in order,
+     * so using contais on a large ArrayList can be inefficient.
+     */
+
+    System.out.printf("Size: %s%n", items.size());
+
+  }
+
+  public static void display(ArrayList<String> items, String header) {
+    System.out.println();
+    System.out.println(header);
+
+
+    for (String item:items
+    ) {
+      System.out.printf(" %s",item);
+    }
   }
 
   /**
-   *  Class Arrays provides static methods for common array manipulatins: sort, binarySearch,
-   *  equals and fill, e much more.
+   * Class Arrays provides static methods for common array manipulatins: sort, binarySearch, equals
+   * and fill, e much more.
    */
   private static void classArrays() {
 
-    double[] doubleArray = {8.4,9.3, 0.2, 7.9, 3.4};
+    double[] doubleArray = {8.4, 9.3, 0.2, 7.9, 3.4};
     Arrays.sort(doubleArray);
 
     System.out.printf("%ndoubleArray: ");
@@ -30,28 +81,28 @@ public class TheArrays {
     for (double value : doubleArray) {
       System.out.printf("%.1f ", value);
     }
-    
+
     //fill 10-element array with 7s
     int[] filledIntArray = new int[10];
-    Arrays.fill(filledIntArray,7);
-    displayArray(filledIntArray,"filledIntArray");
+    Arrays.fill(filledIntArray, 7);
+    displayArray(filledIntArray, "filledIntArray");
 
     //copy array intArray into array intArrayCopy
 
-    int[] intArray = {1,2,3,4,5,6};
+    int[] intArray = {1, 2, 3, 4, 5, 6};
     int[] intArrayCopy = new int[intArray.length];
 
-    System.arraycopy(intArray,0,intArrayCopy,0,intArray.length);
+    System.arraycopy(intArray, 0, intArrayCopy, 0, intArray.length);
     displayArray(intArray, "intArray");
-    displayArray(intArrayCopy,"intArrayCopy");
+    displayArray(intArrayCopy, "intArrayCopy");
 
     //Compare intArray and intArrayCopy for equality
-    boolean b = Arrays.equals(intArray,intArrayCopy);
-    System.out.printf("%n%nintArray %s intArrayCopy%n", (b? "==" : "!="));
+    boolean b = Arrays.equals(intArray, intArrayCopy);
+    System.out.printf("%n%nintArray %s intArrayCopy%n", (b ? "==" : "!="));
 
     //Compare intArray and filledIntArray for equality
-     b = Arrays.equals(intArray,filledIntArray);
-    System.out.printf("%n%nintArray %s filledIntArray%n", (b? "==" : "!="));
+    b = Arrays.equals(intArray, filledIntArray);
+    System.out.printf("%n%nintArray %s filledIntArray%n", (b ? "==" : "!="));
 
     /**
      * When Comparing array contents always use Arrays.equals(), which compares the
@@ -60,14 +111,14 @@ public class TheArrays {
      */
     //Compare intArray and filledIntArray for reference
     b = intArrayCopy.equals(intArray);
-    System.out.printf("%n%n Reference: intArray %s filledIntArray%n%n", (b? "==" : "!="));
+    System.out.printf("%n%n Reference: intArray %s filledIntArray%n%n", (b ? "==" : "!="));
 
     //search intArray for the value 5
-    int location = Arrays.binarySearch(intArray,5);
+    int location = Arrays.binarySearch(intArray, 5);
 
-    if(location >= 0){
+    if (location >= 0) {
       System.out.printf("Found 5 at element %d in intArray%n", location);
-    }else{
+    } else {
       System.out.println("5 not found in intArray");
     }
 
@@ -76,10 +127,10 @@ public class TheArrays {
 
   private static void displayArray(int[] filledIntArray, String description) {
 
-    System.out.printf("%n%s: ",description);
-    for (int item:filledIntArray
+    System.out.printf("%n%s: ", description);
+    for (int item : filledIntArray
     ) {
-      System.out.printf("%d",item);
+      System.out.printf("%d", item);
 
     }
   }
