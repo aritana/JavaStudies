@@ -36,6 +36,22 @@ package com.example.genericCollections;
  * a collection with a large number of elements. A LinkedList enables efficient insertion or removal
  * of elements in the middle of a collection, but is much less efficient than an ArrayList for
  * jumping to a specific element in the collection.
+ *
+ * Lists: Interface List is implemented by several classes, including ArrayList, LinkedList and
+ * Vector. Classes ArrayList and Vector are resizable-array implementations of List. Inserting an
+ * element between existing elements of an ArrayList or Vector is an inefficient operation all
+ * elements after the new one must be moved out of the way, which could be an expensive operation in
+ * a collection with a large number of elements. A LinkedList enables efficient insertion or removal
+ * of elements in the middle of a collection, but is much less efficient than an ArrayList for
+ * jumping to a specific element in the collection.
+ *
+ * Lists: Interface List is implemented by several classes, including ArrayList, LinkedList and
+ * Vector. Classes ArrayList and Vector are resizable-array implementations of List. Inserting an
+ * element between existing elements of an ArrayList or Vector is an inefficient operation all
+ * elements after the new one must be moved out of the way, which could be an expensive operation in
+ * a collection with a large number of elements. A LinkedList enables efficient insertion or removal
+ * of elements in the middle of a collection, but is much less efficient than an ArrayList for
+ * jumping to a specific element in the collection.
  */
 
 /**
@@ -51,9 +67,12 @@ package com.example.genericCollections;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * ArrayList and Vector have nearly identical behaviors.
@@ -67,6 +86,115 @@ public class CollectionsOverView {
 
   public static void main(String[] args) {
 
+    // arrayList();
+    //linkedList();
+    //usingArrayAsList();
+    usingToArray();
+
+  }
+
+  private static void usingArrayAsList() {
+
+    try {
+      String a[] = new String[]{"A", "B", "C", "D"};
+      List<String> list = Arrays.asList(a);
+
+      System.out.println("The list is: " + list);
+
+    } catch (NullPointerException e) {
+      System.out.println("Exception thrown : " + e);
+    }
+
+  }
+
+  private static void usingToArray() {
+    String[] colors = {"black", "blue","yellow"};
+    LinkedList<String> links = new LinkedList<>(Arrays.asList(colors));
+
+    links.addLast("red");
+    links.add("pink");
+    links.add(3,"green");
+    links.addFirst("cyan");
+
+    //get LinkedList elements as an array
+    colors = links.toArray(new String[links.size()]);
+
+    System.out.println("colors: ");
+    for (String color: colors
+    ) {
+      System.out.println(color);
+    }
+  }
+
+  private static void linkedList() {
+
+    String[] colors = {"black", "yellow", "green", "blue", "violet", "silver"};
+    List<String> list1 = new LinkedList<>();
+
+    for (String color : colors) {
+      list1.add(color);
+    }
+
+    String[] colors2 = {"gold", "white", "brown", "blue", "gray", "silver"};
+    List<String> list2 = new LinkedList<>();
+
+    for (String color : colors) {
+      list2.add(color);
+    }
+
+    //concatenate lists
+    list1.addAll(list2);
+    list2 = null; //release resources
+
+    printList(list1);
+
+    System.out.printf("%nDeleting elements 4 to 6...");
+    removeItems(list1, 4, 7);
+    printList(list1);
+
+    printReversedList(list1);
+
+    System.out.printf("%nUpper Case...");
+    convertToUppercaseStrings(list1);
+    printList(list1);
+
+
+  }
+
+  private static void convertToUppercaseStrings(List<String> list) {
+
+    ListIterator<String> iterator = list.listIterator();
+    while (iterator.hasNext()) {
+      String color = iterator.next();
+      iterator.set(color.toUpperCase());
+    }
+  }
+
+  private static void printReversedList(List<String> list) {
+
+    ListIterator<String> iterator = list.listIterator(list.size());
+    System.out.printf("%nReversed List:%n");
+
+    //print list in reverse order
+    while (iterator.hasPrevious()) {
+      System.out.printf("%s ", iterator.previous());
+    }
+
+  }
+
+  private static void removeItems(List<String> list, int start, int end) {
+    list.subList(start, end).clear();//remove items
+  }
+
+  private static void printList(List<String> list) {
+    System.out.printf("%nlist:%n");
+    for (String color : list) {
+      System.out.printf("%s ", color);
+    }
+    System.out.println();
+  }
+
+  private static void arrayList() {
     String[] colors = {"MAGENTA", "RED", "WHITE", "BLUE", "CYAN"};
     List<String> list = new ArrayList<>();
 
@@ -98,7 +226,6 @@ public class CollectionsOverView {
     for (String color : list) {
       System.out.printf("%s ", color);
     }
-
   }
 
   private static void removeColors(Collection<String> list, Collection<String> removeList) {
