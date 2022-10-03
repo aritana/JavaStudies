@@ -52,6 +52,38 @@ package com.example.genericCollections;
  * a collection with a large number of elements. A LinkedList enables efficient insertion or removal
  * of elements in the middle of a collection, but is much less efficient than an ArrayList for
  * jumping to a specific element in the collection.
+ *
+ * Lists: Interface List is implemented by several classes, including ArrayList, LinkedList and
+ * Vector. Classes ArrayList and Vector are resizable-array implementations of List. Inserting an
+ * element between existing elements of an ArrayList or Vector is an inefficient operation all
+ * elements after the new one must be moved out of the way, which could be an expensive operation in
+ * a collection with a large number of elements. A LinkedList enables efficient insertion or removal
+ * of elements in the middle of a collection, but is much less efficient than an ArrayList for
+ * jumping to a specific element in the collection.
+ *
+ * Lists: Interface List is implemented by several classes, including ArrayList, LinkedList and
+ * Vector. Classes ArrayList and Vector are resizable-array implementations of List. Inserting an
+ * element between existing elements of an ArrayList or Vector is an inefficient operation all
+ * elements after the new one must be moved out of the way, which could be an expensive operation in
+ * a collection with a large number of elements. A LinkedList enables efficient insertion or removal
+ * of elements in the middle of a collection, but is much less efficient than an ArrayList for
+ * jumping to a specific element in the collection.
+ *
+ * Lists: Interface List is implemented by several classes, including ArrayList, LinkedList and
+ * Vector. Classes ArrayList and Vector are resizable-array implementations of List. Inserting an
+ * element between existing elements of an ArrayList or Vector is an inefficient operation all
+ * elements after the new one must be moved out of the way, which could be an expensive operation in
+ * a collection with a large number of elements. A LinkedList enables efficient insertion or removal
+ * of elements in the middle of a collection, but is much less efficient than an ArrayList for
+ * jumping to a specific element in the collection.
+ *
+ * Lists: Interface List is implemented by several classes, including ArrayList, LinkedList and
+ * Vector. Classes ArrayList and Vector are resizable-array implementations of List. Inserting an
+ * element between existing elements of an ArrayList or Vector is an inefficient operation all
+ * elements after the new one must be moved out of the way, which could be an expensive operation in
+ * a collection with a large number of elements. A LinkedList enables efficient insertion or removal
+ * of elements in the middle of a collection, but is much less efficient than an ArrayList for
+ * jumping to a specific element in the collection.
  */
 
 /**
@@ -66,9 +98,13 @@ package com.example.genericCollections;
  */
 
 
+import static java.util.Collections.sort;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -82,6 +118,7 @@ import java.util.ListIterator;
  * synchronization to the unsynchronized collections.
  */
 
+
 public class CollectionsOverView {
 
   public static void main(String[] args) {
@@ -89,7 +126,48 @@ public class CollectionsOverView {
     // arrayList();
     //linkedList();
     //usingArrayAsList();
-    usingToArray();
+    //usingToArray();
+    methodSortAsc();
+    methodSortDesc();
+    methodWithComparator();
+
+  }
+
+  private static void methodWithComparator() {
+    List<Time2> list = new ArrayList<>();
+
+    list.add(new Time2(6, 24, 34));
+    list.add(new Time2(18, 14, 58));
+    list.add(new Time2(6, 05, 34));
+    list.add(new Time2(12, 14, 58));
+    list.add(new Time2(6, 24, 22));
+
+    System.out.printf("Unsorted array elements: %n%s%n",list);
+    Collections.sort(list, new TimeComparator());
+
+    System.out.printf("Sorted list elements:%n%s%n", list);
+  }
+
+
+  private static void methodSortDesc() {
+    String[] suits = {"Hearts", "Diamonds", "Clubs", "Spade"};
+
+    List<String> list = Arrays.asList(suits);
+    System.out.printf("Unsorted array elements: %s%n", list);
+
+    Collections.sort(list, Collections.reverseOrder());
+    System.out.printf("Sorted array elements: %s%n", list);
+  }
+
+  private static void methodSortAsc() {
+    //Must implement the Comparable Interface.
+    String[] suits = {"Hearts", "Diamonds", "Clubs", "Spade"};
+
+    List<String> list = Arrays.asList(suits);
+    System.out.printf("Unsorted array elements: %s%n", list);
+
+    Collections.sort(list);
+    System.out.printf("Sorted array elements: %s%n", list);
 
   }
 
@@ -108,19 +186,19 @@ public class CollectionsOverView {
   }
 
   private static void usingToArray() {
-    String[] colors = {"black", "blue","yellow"};
+    String[] colors = {"black", "blue", "yellow"};
     LinkedList<String> links = new LinkedList<>(Arrays.asList(colors));
 
     links.addLast("red");
     links.add("pink");
-    links.add(3,"green");
+    links.add(3, "green");
     links.addFirst("cyan");
 
     //get LinkedList elements as an array
     colors = links.toArray(new String[links.size()]);
 
     System.out.println("colors: ");
-    for (String color: colors
+    for (String color : colors
     ) {
       System.out.println(color);
     }
