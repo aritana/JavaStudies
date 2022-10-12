@@ -84,6 +84,14 @@ package com.example.genericCollections;
  * a collection with a large number of elements. A LinkedList enables efficient insertion or removal
  * of elements in the middle of a collection, but is much less efficient than an ArrayList for
  * jumping to a specific element in the collection.
+ *
+ * Lists: Interface List is implemented by several classes, including ArrayList, LinkedList and
+ * Vector. Classes ArrayList and Vector are resizable-array implementations of List. Inserting an
+ * element between existing elements of an ArrayList or Vector is an inefficient operation all
+ * elements after the new one must be moved out of the way, which could be an expensive operation in
+ * a collection with a large number of elements. A LinkedList enables efficient insertion or removal
+ * of elements in the middle of a collection, but is much less efficient than an ArrayList for
+ * jumping to a specific element in the collection.
  */
 
 /**
@@ -105,6 +113,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -127,9 +136,53 @@ public class CollectionsOverView {
     //linkedList();
     //usingArrayAsList();
     //usingToArray();
-    methodSortAsc();
-    methodSortDesc();
-    methodWithComparator();
+    // methodSortAsc();
+    // methodSortDesc();
+    //methodWithComparator();
+    //suffle();
+    algorithms();
+
+  }
+
+  private static void algorithms() {
+    
+    Character[]letters = {'P','C','M'};
+    List<Character> list = Arrays.asList(letters);
+    System.out.println("List contains: ");
+    output(list);
+
+    // reverse and display the List<Character>
+    Collections.reverse(list);
+    System.out.printf("%nAfter calling reverse, list contains:%n");
+    output(list);
+
+    // create copyList from an array of 3 Characters
+    Character[] lettersCopy = new Character[3];
+    List<Character> copyList = Arrays.asList(lettersCopy);
+
+    // copy the contents of list into copyList
+    Collections.copy(copyList,list);
+    System.out.printf("%nAfter copying, copyList contains:%n");
+    output(copyList);
+
+    // fill list with Rs
+    Collections.fill(list,'R');
+    System.out.println("%nAfter calling fill, list contains:%n");
+    output(list);
+  }
+
+  private static void output(List<Character> list) {
+    System.out.print("The list is: ");
+    for (Character element : list) {
+      System.out.printf("%s ", element);
+    }
+    System.out.printf("%nMax: %s",Collections.max(list));
+    System.out.printf("%nMax: %s",Collections.min(list));
+  }
+
+  private static void suffle() {
+    DeckOfCards cards = new DeckOfCards();
+    cards.printCards();
 
   }
 
@@ -142,7 +195,7 @@ public class CollectionsOverView {
     list.add(new Time2(12, 14, 58));
     list.add(new Time2(6, 24, 22));
 
-    System.out.printf("Unsorted array elements: %n%s%n",list);
+    System.out.printf("Unsorted array elements: %n%s%n", list);
     Collections.sort(list, new TimeComparator());
 
     System.out.printf("Sorted list elements:%n%s%n", list);
