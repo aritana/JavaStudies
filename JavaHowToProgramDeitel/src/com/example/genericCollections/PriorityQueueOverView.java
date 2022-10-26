@@ -8,7 +8,7 @@ public class PriorityQueueOverView {
   public static void main(String[] args) {
     PriorityQueue<Double> queue = new PriorityQueue();
 
-    //Insert elements to queue
+    //Insert elements to queue in natural order
     queue.offer(3.2);
     queue.offer(9.8);
     queue.offer(9.7);
