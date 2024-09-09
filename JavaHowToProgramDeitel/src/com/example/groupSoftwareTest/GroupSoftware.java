@@ -41,7 +41,6 @@ class GroupSoftwareTest {
         System.out.println(listLetrasMaiusculas);
     }
 
-
     private static void tarefa2() {
         Apartamento apto1 = new Apartamento();
         apto1.setArea(100.0);
@@ -72,7 +71,6 @@ class GroupSoftwareTest {
             }
         }
     }
-
 
     private static void tarefa1() {
         Quadrado quadrado = new Quadrado(2.0);
