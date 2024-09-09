@@ -1,56 +1,37 @@
+# Diretórios de saída de IDE
+out/
+*.iml
+.idea/
+
 # Compiled class files
 *.class
 
-# Log files
-*.log
-
-# Directory for Maven build artifacts
+# Diretório de saída do Maven
 target/
 
-# Directory for Gradle build artifacts
+# Diretório de saída do Gradle
 build/
 
-# Eclipse specific files
-.metadata/
+# Arquivos de log
 *.log
+
+# Arquivos temporários
 *.tmp
 *.bak
 *.swp
 
-# IntelliJ IDEA specific files
-.idea/
-*.iml
-*.iws
-out/
-
-# NetBeans specific files
-nbproject/private/
-nbbuild/
-nbdist/
-nbactions.xml
-private/
-build/
-nbproject/lock/
-
-# VS Code specific files
-.vscode/
-
-# OS-specific files
+# Arquivos e diretórios específicos de sistema operacional
 .DS_Store
 Thumbs.db
 
-# Application-specific files
+# Arquivos de distribuição de aplicação
 *.jar
 *.war
 *.ear
 
-# Maven wrapper files
+# Arquivos do Maven Wrapper
 .mvn/wrapper/
 
-# Gradle wrapper files
+# Arquivos do Gradle Wrapper
 .gradle/
 !gradle/wrapper/gradle-wrapper.jar
-
-# Dependency directories
-.gradle/
-**/build/
