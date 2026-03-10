@@ -75,11 +75,11 @@ public class CollectionExamples {
         lista1.retainAll(lista3);
         System.out.println(lista1);
 
-        Set<String> set2 = new HashSet<>(lista1);
+        /*SetImp<String> set2 = new HashSet<>(lista1);
         List<String> comuns = set2.stream()
                 .filter(lista3::contains)//item->list3.contains(item)
-                .toList();
+                .toList();*/
 
-        System.out.println(comuns);
+        //System.out.println(comuns);
     }//continuar na pagina 590
 }
